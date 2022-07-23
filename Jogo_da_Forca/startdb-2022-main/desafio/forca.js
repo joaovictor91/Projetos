@@ -5,13 +5,37 @@ class Forca {
   verifica=false;
   vidas=6;
   letrasChutadas=[];
-  
+
+
   chutar(letra) {
-    if (letra.length != 1) {
+    
+    
+    if (letra.length > 1) {
       console.log('Informe apenas uma letra \n');
-      console.log('Aqui foi informado ',letra,'e possui ',letra.length,'letras \n');
+      console.log('Aqui foi informado ',letra,'e possui ',letra.length,'caracteres \n');
       return;
     }
+    
+    else if(letra.length == 0){
+      console.log('Informe alguma letra!! \n');
+      
+      return;
+    }
+    else if ('0' <= letra && letra <= '9') {
+      console.log('O que foi informado não é uma letra é um numero!! \n');
+      
+      return;
+    }
+    else if (letra == ('.') || letra == (',') || letra == (';') || letra == (':') || letra == ('~')
+            || letra == ('^') || letra == ('´') || letra == ('`') || letra == ('[') || letra == (']')
+            || letra == ('{') || letra == ('}') || letra == ('=') || letra == ('-') || letra == ('+')
+            || letra == ('/') || letra == ('*') || letra == ('%') || letra == ('$') || letra == ('$')
+            || letra == ('#') || letra == ('@') || letra == ('!') || letra == ('?')
+            || letra == ('<') || letra == ('>'))
+            {
+              console.log('O que foi informado não é considerado uma letra!! \n');
+              return;
+            }
     
 
     //Adicionando a letra na posiçãoe adicionar a letra
@@ -69,6 +93,8 @@ class Forca {
   }
 
   buscarEstado() { 
+    
+
     //Adicionando as condições para a palavra
     if (this.palavra.length != this.palavracerta.length)
     {
@@ -85,6 +111,11 @@ class Forca {
     ///Condição de venceu
     else if (this.palavracerta == this.palavra.toString().replaceAll(",","")) {
       return "ganhou";
+    }
+    else{
+      
+      
+      return "aguardando chute";
     }
     
 } // Possiveis valores: "perdeu", "aguardando chute" ou "ganhou"
