@@ -39,7 +39,7 @@
                     rs += "<td>"+data[i].name.common+"</td>";
                     rs += "<td>"+Capital1(data[i].capital)+"</td>";
                     rs += "<td>"+FormatReal(data[i].area)+"</td>";
-                    rs += "<td>"+Checar(data[i].currencies)+"</td>";
+                    rs += "<td>"+Checar(JSON.stringify(data[i].currencies))+"</td>";
                     rs += "</tr>";
 
                 }
@@ -87,12 +87,19 @@
                 
         }
         function Checar(y){
-            var aux = JSON.stringify(y);
-            var x=0;
+            var aux = y;
+            
+            
             if (y != undefined) {
+               let test = JSON.parse(aux);
+               let textTable = "";
+               for(const i in test) {
+                    textTable += i + ", ";
+                    
+                }         
+            
+                return textTable;
                 
-                return aux[0];
-
             }
                  
             
