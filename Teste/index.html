@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css"/>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Teste Tunts</title>
+  </head>
+  <body>
+    <div>
+        <table class="table table-bordered">
+            <caption>Countries List</caption>
+            <thead>
+            <tr>
+                <th scope="col" class="titulo">Name</th>
+                <th scope="col" class="titulo">Capital</th>
+                <th scope="col" class="titulo">Area</th>
+                <th scope="col" class="titulo">Currencies</th>
+            </tr>
+            </thead>
+            <tbody id="result">
+
+                
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        $.ajax({
+            url:"https://restcountries.com/v3.1/all",
+            type:"get",
+            success:function(data){
+                var rs = "";
+                for(i in data){
+                    rs += "<tr>";
+                    rs += "<td>"+data[i].name.common+"</td>";
+                    rs += "<td>"+Capital1(data[i].capital)+"</td>";
+                    rs += "<td>"+FormatReal(data[i].area)+"</td>";
+                    rs += "<td>"+Checar(data[i].currencies)+"</td>";
+                    rs += "</tr>";
+
+                }
+                document.getElementById("result").innerHTML = rs;
+
+            }
+        })
+        function Capital1(c){
+            var aux = c;
+            
+            if (c != undefined) {
+                    if(c =! '') {
+                
+                    return aux;
+
+                        
+
+                }
+            else if (c == '') {
+                    c = '-';
+                    aux = c;
+                    return aux;
+                }
+                }
+            
+           else{
+                    c = '-';
+                    aux = c;
+                    return aux;
+                }
+        }
+        function FormatReal( int )
+        {       var tmp = int+'';
+                tmp = tmp.replace(/(?:(^\d{1,3})(?=(?:\d{3})*$)|(\d{3}))(?!$)/mg, '$1$2.')+',00';
+                if(int =! 0) {
+                    
+                    return tmp;
+
+                }
+                else{
+                    var tmp = '-'
+                    return tmp;
+                }
+                
+                
+        }
+        function Checar(y){
+            var aux = JSON.stringify(y);
+            var x=0;
+            if (y != undefined) {
+                
+                return aux[0];
+
+            }
+                 
+            
+           else{
+                    y = '-';
+                    aux = y;
+                    return aux;
+                }
+        }
+        
+        
+    </script>
+    
+
+   
+  </body>
+</html>
